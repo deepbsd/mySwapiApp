@@ -14,8 +14,8 @@ const starWarsCharacter = mongoose.Schema({
   vehicles: [],
   starships: [],
   created: {type: String, default: Date.now},
-  edited: String,
-  url: {type: String, required: true}
+  edited: {type: String, default: Date.now},
+  url: String
 });
 
 const starWarsSpecies = mongoose.Schema({
@@ -61,6 +61,7 @@ const starWarsPlanet = mongoose.Schema({
 
 starWarsCharacter.methods.apiRepr = function() {
   return {
+    id: this._id,
     name: this.name,
     gender: this.gender,
     species: this.species,
@@ -71,6 +72,7 @@ starWarsCharacter.methods.apiRepr = function() {
 
 starWarsSpecies.methods.apiRepr = function() {
   return {
+    id: this._id,
     name: this.name,
     homeworld: this.homeworld,
     classification: this.classification,
@@ -85,6 +87,7 @@ starWarsSpecies.methods.apiRepr = function() {
 
 starWarsPlanet.methods.apiRepr = function() {
   return {
+    id: this._id,
     name: this.name,
     diameter: this.diameter,
     climate: this.climate,

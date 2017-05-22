@@ -1,0 +1,24 @@
+{
+            "name": "Darth Dave",
+            "height": "172",
+            "mass": "93",
+            "hair_color": "gray",
+            "skin_color": "light",
+            "eye_color": "gray",
+            "birth_year": "47BBY",
+            "gender": "male",
+            "homeworld": "http://www.swapi.co/api/planets/1/",
+            "films": [
+                "http://www.swapi.co/api/films/5/",
+                "http://www.swapi.co/api/films/6/",
+                "http://www.swapi.co/api/films/1/"
+            ],
+            "species": [
+                "http://www.swapi.co/api/species/1/"
+            ],
+            "vehicles": [],
+            "starships": [],
+            "created": "",
+            "edited": "",
+            "url": ""
+        }
