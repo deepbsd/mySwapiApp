@@ -250,8 +250,9 @@ html {
   Body
 ----------------------------------------------------------------------------*/
 body {
-  color: red;
-  font-family: "Adelle-Regular", serif; }
+  color: blue;
+  font-family: "Adelle-Regular", serif;
+  font-size: 32px; }
 
 /*----------------------------------------------------------------------------
   Headings

@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 // this module
 const should = chai.should();
 
-const {starWarsCharacter, starWarsPlanet, starWarsSpecies} = require('../models');
+const {starWarsCharacter, starWarsPlanet, starWarsSpecies} = require('../src/js/models');
 const {app, runServer, closeServer} = require('../server');
 const {TEST_DATABASE_URL} = require('../config');
 
@@ -18,30 +18,37 @@ chai.use(chaiHttp);
 // we use the Faker library to automatically
 // generate placeholder values for author, title, content
 // and then we insert that data into mongo
-function seedBlogPostData() {
+function seedSwapiPlanetData() {
   console.info('seeding blog post data');
   const seedData = [];
 
   for (let i=1; i<=10; i++) {
-    seedData.push(generateBlogData());
+    seedData.push(generatePlanetData());
   }
   // this will return a promise
-  return BlogPost.insertMany(seedData);
+  return starWarsPlanet.insertMany(seedData);
 }
 
 
 // generate an object represnting a restaurant.
 // can be used to generate seed data for db
 // or request.body data
-function generateBlogData() {
+function generateSwapiPlanetData() {
   return {
-    author: {
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName()
-    },
-    title: faker.lorem.words(),
-    content: faker.lorem.sentences(),
-    created: faker.date.past()
+    author: faker.name.firstName(),
+    rotation_period: faker.address.zipCode(),
+    orbital_period: faker.address.zipCode(),
+    diameter: faker.random.number(),
+    climate: faker.lorem.words(),
+    gravity: faker.random.number(),
+    terrain: faker.lorem.words(),
+    surface_water: ,
+    population: ,
+    residents: [],
+    films: [],
+    created: ,
+    edited: ,
+    url:
   }
 }
 
