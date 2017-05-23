@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 // this module
 const should = chai.should();
 
-const {BlogPost} = require('../models');
+const {starWarsCharacter, starWarsPlanet, starWarsSpecies} = require('../models');
 const {app, runServer, closeServer} = require('../server');
 const {TEST_DATABASE_URL} = require('../config');
 
@@ -33,7 +33,7 @@ function seedBlogPostData() {
 // generate an object represnting a restaurant.
 // can be used to generate seed data for db
 // or request.body data
-function generateBlogData() { 
+function generateBlogData() {
   return {
     author: {
       firstName: faker.name.firstName(),

@@ -1,0 +1,98 @@
+/*----------------------------------------------------------------------------
+  Animations
+----------------------------------------------------------------------------*/
+$animate: 0.2s;
+
+
+/*----------------------------------------------------------------------------
+  Colors - General
+----------------------------------------------------------------------------*/
+$black00: #000000;
+$blue40: #4060af;
+$gray75: #757575;
+$gray40: #4d4c4c;
+$redeb: #eb1c23;
+$whiteff: #ffffff;
+/*----------------------------------------------------------------------------
+  Colors - Specific to Client Branding  //c004
+----------------------------------------------------------------------------*/
+$blueGP: #017db9;
+$cyanGP: #00bcf1;
+$grayGP: #626262;
+$greenGP: #b2d235;
+$redGP: #ec1c24;
+
+
+/*----------------------------------------------------------------------------
+  Font Families
+----------------------------------------------------------------------------*/
+$ffadb: 'Adelle-Bold', serif;
+$ffadbi: 'Adelle-BoldItalic', serif;
+$ffadeb: 'Adelle-ExtraBold', serif;
+$ffadebi: 'Adelle-ExtraBoldItalic', serif;
+$ffadh: 'Adelle-Heavy', serif;
+$ffadhi: 'Adelle-HeavyItalic', serif;
+$ffadi: 'Adelle-Italic', serif;
+$ffadl: 'Adelle-Light', serif;
+$ffadli: 'Adelle-LightItalic', serif;
+$ffadr: 'Adelle-Regular', serif;
+$ffadsb: 'Adelle-SemiBold', serif;
+$ffadsbi: 'Adelle-SemiBoldItalic', serif;
+$ffar: 'Arial', sans-serif;
+$ffbsb: 'BerninaSans-Bold', sans-serif;
+$ffbseb: 'BerninaSans-Extrabold', sans-serif;
+$ffbsl: 'BerninaSans-Light', sans-serif;
+$ffbsr: 'BerninaSans', sans-serif;
+$ffbssb: 'BerninaSans-Semibold', sans-serif;
+$ffulc: 'UniversLTStd-LightCn', sans-serif;
+
+
+/*----------------------------------------------------------------------------
+  Font Sizes  //c006
+----------------------------------------------------------------------------*/
+$fs10: 0.714rem;
+$fs12: 0.857rem;
+$fs14: 1.0rem;
+$fs16: 1.143rem;
+$fs18: 1.286rem;
+$fs19: 1.357rem;
+$fs20: 1.429rem;
+$fs22: 1.571rem;
+$fs24: 1.714rem;
+$fs30: 2.143rem;
+$fs36: 2.571rem;
+$fs40: 2.857rem;
+$fs60: 4.286rem;
+$fs72: 5.143rem;
+$fs106: 7.571rem;
+$fs140: 10.0rem;
+
+
+/*----------------------------------------------------------------------------
+  Overlays
+----------------------------------------------------------------------------*/
+$oblack50: rgba(0, 0, 0, 0.5);
+$oblue40: rgba(64, 96, 175, .45); //c005
+$owhite40: rgba(255, 255, 255, 0.4);
+
+/*----------------------------------------------------------------------------
+  Responsive Breakpoints
+----------------------------------------------------------------------------*/
+$taft: 375px;
+$wilson: 414px;
+$harding: 480px;
+$coolidge: 550px;
+$hoover: 620px;
+$froosevelt: 680px;
+$truman: 768px;  //c001
+$eisenhower: 800px;
+$kennedy: 850px;
+$johnson: 900px;
+$nixon: 992px;  //c001
+$ford: 1024px;
+$carter: 1100px;
+$reagan: 1200px;  //c001
+$hbush: 1300px;
+$clinton: 1400px;
+$wbush: 1500px;
+$obama: 1600px;

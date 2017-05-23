@@ -8,13 +8,17 @@ const {DATABASE_URL, PORT} = require('./config');
 
 app.use(morgan('common'));
 
+app.use('/', express.static(__dirname+'/public'));
+app.use('/css', express.static(__dirname+'/src/css'));
+app.use('/img', express.static(__dirname+'/src/img'));
+app.use('/js', express.static(__dirname+'/src/js'));
+app.use('/jquery', express.static(__dirname+'/node_modules/jquery/dist'));
 
 
+const peopleRouter = require('./src/js/peopleRouter');
+const planetsRouter = require('./src/js/planetsRouter');
+const speciesRouter = require('./src/js/speciesRouter');
 
-
-const peopleRouter = require('./peopleRouter');
-const planetsRouter = require('./planetsRouter');
-const speciesRouter = require('./speciesRouter');
 
 app.use('/people', peopleRouter);
 app.use('/species', speciesRouter);
