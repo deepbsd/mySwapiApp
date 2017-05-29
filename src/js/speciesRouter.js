@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 
-const {swapiSpecies} = require('./models');
+const {swapiSpecies} = require('./mymodels/species-model');
 
 
 router.get('/', (req, res) => {

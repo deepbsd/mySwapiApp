@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 
-const {swapiCharacter} = require('./models');
+const {swapiCharacter} = require('./mymodels/character-model');
 
 
 router.get('/', (req, res) => {
