@@ -202,5 +202,76 @@ describe('swapiPlanet API resource', function() {
     });
   });
 
+  describe('PUT endpoint', function() {
+
+    // strategy:
+    //  1. Get an existing character from db
+    //  2. Make a PUT request to update that entry
+    //  3. Prove character returned by request contains data we sent
+    //  4. Prove character in db is correctly updated
+    it('should update fields you send over', function() {
+      const updateData = {
+        gender: 'fofofofofofofof',
+        name: 'foo bar baz bee bop aree bop ruhbarb pie'
+      };
+
+
+      return swapiCharacter
+        .findOne()
+        .exec()
+        .then(function(character) {
+          updateData.id = character.id;
+
+          // make request then inspect it to make sure it reflects
+          // data we sent
+          return chai.request(app)
+            .put(`/people/${character.id}`)
+            .send(updateData);
+
+        })
+        .then(function(res) {
+          // server.js file specifies status 201 on success...
+          res.should.have.status(201);
+
+          return swapiCharacter.findById(updateData.id).exec();
+        })
+        .then(function(character) {
+          character.gender.should.equal(updateData.gender);
+          character.name.should.equal(updateData.name);
+        });
+      });
+  });
+
+  describe('DELETE endpoint', function() {
+    // strategy:
+    //  1. get a character
+    //  2. make a DELETE request for that character's id
+    //  3. assert that response has right status code
+    //  4. prove that planet with the id doesn't exist in db anymore
+    it('delete a character by id', function() {
+
+      let character;
+
+      return swapiCharacter
+        .findOne()
+        .exec()
+        .then(function(_character) {
+          character = _character;
+          return chai.request(app).delete(`/people/${character.id}`);
+        })
+        .then(function(res) {
+          res.should.have.status(204);
+          return swapiCharacter.findById(character.id).exec();
+        })
+        .then(function(character) {
+          // when a variable's value is null, chaining `should`
+          // doesn't work. so `_character.should.be.null` would raise
+          // an error. `should.be.null(_post)` is how we can
+          // make assertions about a null value.
+          should.not.exist(character);
+        });
+    });
+  });
+
 
 });

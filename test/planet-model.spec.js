@@ -242,7 +242,7 @@ describe('swapiPlanet API resource', function() {
     //  2. make a DELETE request for that planet's id
     //  3. assert that response has right status code
     //  4. prove that planet with the id doesn't exist in db anymore
-    it('delete a blogpost by id', function() {
+    it('delete a character by id', function() {
 
       let planet;
 

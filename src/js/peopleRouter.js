@@ -48,7 +48,7 @@ router.post('/', jsonParser, (req, res) => {
       name: req.body.name,
       gender: req.body.gender,
       homeworld: req.body.homeworld,
-      species: [req.body.species]
+      species: req.body.species
     })
     .then(character => res.status(201).json(character.apiRepr()))
     .catch(err => {

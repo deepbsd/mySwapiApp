@@ -51,7 +51,7 @@ router.post('/', jsonParser, (req, res) => {
       designation: req.body.designation,
       average_lifespan: req.body.average_lifespan,
       average_height: req.body.average_height,
-      people: [req.body.people],
+      people: req.body.people,
       url: req.body.url
     })
     .then(species => res.status(201).json(species.apiRepr()))

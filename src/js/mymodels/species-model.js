@@ -24,7 +24,7 @@ starWarsSpecies.methods.apiRepr = function() {
     name: this.name,
     homeworld: this.homeworld,
     classification: this.classification,
-    designation: this.classification,
+    designation: this.designation,
     average_lifespan: this.average_lifespan,
     average_height: this.average_height,
     people: this.people,
