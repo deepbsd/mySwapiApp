@@ -2,6 +2,8 @@ const express = require('express');
 
 const morgan = require('morgan');
 
+
+
 const app = express();
 
 const {DATABASE_URL, PORT} = require('./config');
@@ -15,10 +17,14 @@ app.use('/js', express.static(__dirname+'/src/js'));
 app.use('/jquery', express.static(__dirname+'/node_modules/jquery/dist'));
 
 
+
 const peopleRouter = require('./src/js/peopleRouter');
 const planetsRouter = require('./src/js/planetsRouter');
 const speciesRouter = require('./src/js/speciesRouter');
 
+//  I think this is all there is to setting user auth...
+const {router: usersRouter} = require('./src/js/users');
+app.use('/users/', usersRouter);
 
 app.use('/people', peopleRouter);
 app.use('/species', speciesRouter);
