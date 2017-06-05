@@ -112,6 +112,55 @@ router.get('/', (req, res) => {
   .catch(err => console.log(err) && res.status(500).json({message: 'Internal server error'}));
 });
 
+// Show how to get user by id
+router.get('/:id', (req, res) => {
+  User
+    .findById(req.params.id)
+    .exec()
+    .then(user => res.json(user.apiRepr()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went horribly awry'});
+    });
+});
+
+router.put('/:id', jsonParser, (req, res) => {
+  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+    res.status(400).json({
+      error: 'Request path id and request body id values must match'
+    });
+  }
+
+  const updated = {};
+  const updateableFields = ['username', 'firstName', 'lastName', 'password'];
+  updateableFields.forEach(field => {
+    if (field in req.body) {
+      updated[field] = req.body[field];
+    }
+  });
+
+  User
+    .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
+    .exec()
+    .then(updatedUser => res.status(201).json(updatedUser.apiRepr()))
+    .catch(err => res.status(500).json({message: 'Something went wrong'}));
+});
+
+router.delete('/:id', (req, res) => {
+  User
+    .findByIdAndRemove(req.params.id)
+    .exec()
+    .then(() => {
+      res.status(204).json({message: 'success'});
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+    });
+});
+
+
+
 // Does passport still use callbacks?  Or has it started using promises yet?
 const basicStrategy = new BasicStrategy(function(username, password, cb) {
   let user;
