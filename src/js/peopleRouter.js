@@ -26,6 +26,7 @@ router.get('/:id', (req, res) => {
     .findById(req.params.id)
     .exec()
     .then(character => res.json(character.apiRepr()))
+    .then(character => res.json(character.apiTestRepr()))
     .catch(err => {
       console.error(err);
       res.status(500).json({error: 'something went horribly awry'});

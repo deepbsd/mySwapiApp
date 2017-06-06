@@ -29,6 +29,19 @@ CharacterSchema.methods.apiRepr = function() {
   };
 }
 
+// CharacterSchema.methods.apiTestRepr = function() {
+//   return {
+//     id: this._id,
+//     name: this.name,
+//     height: this.height,
+//     mass: this.mass,
+//     gender: this.gender,
+//     species: this.species,
+//     homeworld: this.homeworld,
+//     created: this.created
+//   };
+// }
+
 const swapiCharacter = mongoose.model('Characters', CharacterSchema);
 
 module.exports = {swapiCharacter};

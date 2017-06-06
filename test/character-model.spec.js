@@ -162,6 +162,19 @@ describe('swapiPlanet API resource', function() {
     });
   });
 
+  // describe('GET /:id endpoint', function(){
+  //   it('should return apiTestRepr for a character', function(){
+  //     return chai.request(app)
+  //       .get('/people/59284545a4da777e8f3b1517')
+  //       .then(function (_res){
+  //         res = _res;
+  //         res.should.have.status(200);
+  //         res.should.be.json();
+  //       });
+  //   });
+  // });
+
+
   describe('POST endpoint', function() {
     // strategy: make a POST request with data,
     // then prove that the character we get back has

@@ -112,17 +112,6 @@ router.get('/', (req, res) => {
   .catch(err => console.log(err) && res.status(500).json({message: 'Internal server error'}));
 });
 
-// Show how to get user by id
-router.get('/:id', (req, res) => {
-  User
-    .findById(req.params.id)
-    .exec()
-    .then(user => res.json(user.apiRepr()))
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({error: 'something went horribly awry'});
-    });
-});
 
 router.put('/:id', jsonParser, (req, res) => {
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
@@ -160,7 +149,6 @@ router.delete('/:id', (req, res) => {
 });
 
 
-
 // Does passport still use callbacks?  Or has it started using promises yet?
 const basicStrategy = new BasicStrategy(function(username, password, cb) {
   let user;
@@ -187,9 +175,23 @@ const basicStrategy = new BasicStrategy(function(username, password, cb) {
 passport.use(basicStrategy);
 router.use(passport.initialize());
 
+// This stopped working...  Hmmm...
 router.get('/me',
   passport.authenticate('basic', {session: false}),
   (req, res) => res.json({user: req.user.apiRepr()})
 );
+
+
+// Show how to get user by id
+router.get('/:id', (req, res) => {
+  User
+    .findById(req.params.id)
+    .exec()
+    .then(user => res.json(user.apiRepr()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went horribly awry'});
+    });
+});
 
 module.exports = {router};
