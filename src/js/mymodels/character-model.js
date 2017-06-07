@@ -35,10 +35,18 @@ CharacterSchema.methods.apiRepr = function() {
 //     name: this.name,
 //     height: this.height,
 //     mass: this.mass,
+//     hair_color: this.hair_color,
+//     eye_color: this.eye_color,
+//     birth_year: this.birth_year,
 //     gender: this.gender,
+//     films: this.films,
+//     vehicles: this.vehicles,
+//     starships: this.starships,
 //     species: this.species,
 //     homeworld: this.homeworld,
-//     created: this.created
+//     edited: this.edited,
+//     created: this.created,
+//     url: this.url
 //   };
 // }
 

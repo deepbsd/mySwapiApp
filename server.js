@@ -21,6 +21,9 @@ app.use('/jquery', express.static(__dirname+'/node_modules/jquery/dist'));
 const peopleRouter = require('./src/js/peopleRouter');
 const planetsRouter = require('./src/js/planetsRouter');
 const speciesRouter = require('./src/js/speciesRouter');
+const filmsRouter = require('./src/js/filmsRouter');
+const vehiclesRouter = require('./src/js/vehiclesRouter');
+const starshipsRouter = require('./src/js/starshipsRouter');
 
 //  I think this is all there is to setting user auth...
 const {router: usersRouter} = require('./src/js/users');
@@ -29,7 +32,9 @@ app.use('/users/', usersRouter);
 app.use('/people', peopleRouter);
 app.use('/species', speciesRouter);
 app.use('/planets', planetsRouter);
-
+app.use('/films', filmsRouter);
+app.use('/vehicles', vehiclesRouter);
+app.use('/starships', starshipsRouter);
 
 
 
