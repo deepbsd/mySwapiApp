@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const FilmsSchema = mongoose.Schema({
   title: {type: String, required: true},
-  episode_id: Number,
+  episode_id: String,
   opening_crawl: String,
   director: String,
   producer: String,

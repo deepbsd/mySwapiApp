@@ -11,7 +11,7 @@ const {swapiFilm} = require('../src/js/mymodels/films-model');
 const {app, runServer, closeServer} = require('../server');
 const {TEST_DATABASE_URL} = require('../config');
 
-console.log('Planet is: ',typeof swapiFilm);
+console.log('Film is: ',typeof swapiFilm);
 
 chai.use(chaiHttp);
 
@@ -21,7 +21,7 @@ chai.use(chaiHttp);
 // generate placeholder values for author, title, content
 // and then we insert that data into mongo
 function seedSwapiFilmData() {
-  console.info('seeding swapi planet data');
+  console.info('seeding swapi film data');
   const seedData = [];
 
   for (let i=1; i<=10; i++) {
@@ -82,11 +82,11 @@ describe('swapiFilm API resource', function() {
   // on proving something small
   describe('GET endpoint', function() {
 
-    it('should return all existing planets', function() {
+    it('should return all existing films', function() {
       // strategy:
-      //    1. get all planets returned by by GET request to `/planets`
+      //    1. get all films returned by by GET request to `/films`
       //    2. prove res has right status, data type
-      //    3. prove the number of planets we got back is equal to number
+      //    3. prove the number of films we got back is equal to number
       //       in db.
       //
       // need to have access to mutate and access `res` across
@@ -119,18 +119,9 @@ describe('swapiFilm API resource', function() {
           res.should.be.json;
           res.body.should.be.a('array');
           res.body.should.have.length.of.at.least(1);
-
-          title: `${faker.name.firstName()}`,
-          episode_id: `${faker.random.number()}`,
-          release_date: `${faker.date.past()}`,
-          director: `${faker.name.findName()}`,
-          opening_crawl: `${faker.lorem.words()}`,
-          created: `${faker.date.past()}`
-
-
           res.body.forEach(function(film) {
-            planet.should.be.a('object');
-            planet.should.include.keys(
+            film.should.be.a('object');
+            film.should.include.keys(
               'title', 'episode_id', 'release_date', 'director', 'id', 'opening_crawl', 'created');
           });
           resSwapiFilm = res.body[0];
@@ -144,7 +135,7 @@ describe('swapiFilm API resource', function() {
           resSwapiFilm.director.should.equal(film.director);
           resSwapiFilm.id.should.equal(film.id);
           resSwapiFilm.opening_crawl.should.equal(film.opening_crawl);
-          resSwapiFilm.created.should.include.members(film.created);
+          resSwapiFilm.created.should.equal(film.created);
         });
     });
   });
@@ -179,11 +170,10 @@ describe('swapiFilm API resource', function() {
           newSwapiFilm.episode_id.should.equal(film.episode_id);
           newSwapiFilm.release_date.should.equal(film.release_date);
           newSwapiFilm.director.should.equal(film.director);
-          newSwapiFilm.id.should.equal(film.id);
           //I forgot that the id doesn't get assigned until Mongo assigns it...
-          //newSwapiPlanet.id.should.equal(planet.id);
+          //newSwapiFilm.id.should.equal(film.id);
           newSwapiFilm.opening_crawl.should.equal(film.opening_crawl);
-          newSwapiFilm.created.should.include.members(film.created);
+          newSwapiFilm.created.should.equal(film.created);
 
         });
     });
@@ -192,27 +182,27 @@ describe('swapiFilm API resource', function() {
   describe('PUT endpoint', function() {
 
     // strategy:
-    //  1. Get an existing planet from db
+    //  1. Get an existing film from db
     //  2. Make a PUT request to update that entry
-    //  3. Prove planet returned by request contains data we sent
-    //  4. Prove planet in db is correctly updated
+    //  3. Prove film returned by request contains data we sent
+    //  4. Prove film in db is correctly updated
     it('should update fields you send over', function() {
       const updateData = {
-        terrain: 'fofofofofofofof',
-        population: 'foo bar baz bee bop aree bop ruhbarb pie'
+        title: 'fofofofofofofof',
+        director: 'foo bar baz bee bop aree bop ruhbarb pie'
       };
 
 
-      return swapiPlanet
+      return swapiFilm
         .findOne()
         .exec()
-        .then(function(planet) {
-          updateData.id = planet.id;
+        .then(function(film) {
+          updateData.id = film.id;
 
           // make request then inspect it to make sure it reflects
           // data we sent
           return chai.request(app)
-            .put(`/planets/${planet.id}`)
+            .put(`/films/${film.id}`)
             .send(updateData);
 
         })
@@ -220,42 +210,42 @@ describe('swapiFilm API resource', function() {
           // server.js file specifies status 201 on success...
           res.should.have.status(201);
 
-          return swapiPlanet.findById(updateData.id).exec();
+          return swapiFilm.findById(updateData.id).exec();
         })
-        .then(function(planet) {
-          planet.terrain.should.equal(updateData.terrain);
-          planet.population.should.equal(updateData.population);
+        .then(function(film) {
+          film.title.should.equal(updateData.title);
+          film.director.should.equal(updateData.director);
         });
       });
   });
 
   describe('DELETE endpoint', function() {
     // strategy:
-    //  1. get a planet
-    //  2. make a DELETE request for that planet's id
+    //  1. get a film
+    //  2. make a DELETE request for that film's id
     //  3. assert that response has right status code
-    //  4. prove that planet with the id doesn't exist in db anymore
-    it('delete a character by id', function() {
+    //  4. prove that film with the id doesn't exist in db anymore
+    it('delete a film by id', function() {
 
-      let planet;
+      let film;
 
-      return swapiPlanet
+      return swapiFilm
         .findOne()
         .exec()
-        .then(function(_planet) {
-          planet = _planet;
-          return chai.request(app).delete(`/planets/${planet.id}`);
+        .then(function(_film) {
+          film = _film;
+          return chai.request(app).delete(`/films/${film.id}`);
         })
         .then(function(res) {
           res.should.have.status(204);
-          return swapiPlanet.findById(planet.id).exec();
+          return swapiFilm.findById(film.id).exec();
         })
-        .then(function(planet) {
+        .then(function(film) {
           // when a variable's value is null, chaining `should`
-          // doesn't work. so `_planet.should.be.null` would raise
+          // doesn't work. so `_film.should.be.null` would raise
           // an error. `should.be.null(_post)` is how we can
           // make assertions about a null value.
-          should.not.exist(planet);
+          should.not.exist(film);
         });
     });
   });

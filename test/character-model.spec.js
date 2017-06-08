@@ -65,7 +65,7 @@ function tearDownDb() {
     return mongoose.connection.dropDatabase();
 }
 
-describe('swapiPlanet API resource', function() {
+describe('swapiCharacter API resource', function() {
 
   // we need each of these hook functions to return a promise
   // otherwise we'd need to call a `done` callback. `runServer`,
@@ -94,7 +94,7 @@ describe('swapiPlanet API resource', function() {
 
     it('should return all existing characters', function() {
       // strategy:
-      //    1. get all planets returned by by GET request to `/planets`
+      //    1. get all characters returned by by GET request to `/people`
       //    2. prove res has right status, data type
       //    3. prove the number of planets we got back is equal to number
       //       in db.
