@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const StarshipsSchema = mongoose.Schema({
   name: {type: String, required: true},
-  model: Number,
+  model: String,
   manufacturer: String,
   cost_in_credits: String,
   length: String,
